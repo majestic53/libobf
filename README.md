@@ -49,7 +49,7 @@ obf_iv_t iv = ...;
 obf_block_t *blocks = ...;
 size_t length = ...;
 
-/* Encode the data blocks with key/IV and collect the modified blocks/IV */
+/* Encode the data blocks with key/IV and collect the modified data blocks/IV */
 obf_error_e result = obf_encode(&key, &iv, blocks, length);
 if(result != OBF_SUCCESS) {
     /* Handle error */
