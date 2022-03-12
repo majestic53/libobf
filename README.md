@@ -4,6 +4,26 @@
 
 ### A lightweight obfustication library, written in C.
 
+This library offers a quick way to obfusticate arbitrary data in a reverable way. No actual encryption is performed, so the results should not be considered cryptographically secure.
+
+The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encoding the data in 32-bit blocks:
+
+<p align="center">
+    <img src=https://github.com/majestic53/libobf/raw/master/docs/overview.png>
+</p>
+
+The encoding process walks through the 32-bit blocks, encoding each block using the previous block and IV as input. At the end, the IV is wrapped one final time with the key:
+
+<p align="center">
+    <img src=https://github.com/majestic53/libobf/raw/master/docs/encode.png>
+</p>
+
+Similiarly, the decoding process performes the same process in reverse. First the IV is unwrapped, followed by decoding each block using the previous block and IV as input:
+
+<p align="center">
+    <img src=https://github.com/majestic53/libobf/raw/master/docs/decode.png>
+</p>
+
 ## Building from source
 
 __NOTE__: This project has been tested under Linux, using the GCC compiler. Some modifications may be required to build with a different OS/compiler.
