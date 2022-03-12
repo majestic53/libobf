@@ -126,9 +126,9 @@ static obf_error_e test_encode_decode(void)
         goto exit;
     }
 
+    fprintf(stdout, "\nIV     = %08X\n", iv_cipher);
     fprintf(stdout, "\nCipher = ");
     print_blocks(cipher, length);
-    fprintf(stdout, "IV     = %08X\n", iv_cipher);
 
     for(index = 0; index < length; ++index) {
 
@@ -148,9 +148,9 @@ static obf_error_e test_encode_decode(void)
         goto exit;
     }
 
+    fprintf(stdout, "\nIV     = %08X\n", iv_cipher);
     fprintf(stdout, "\nPlain  = ");
     print_blocks(cipher, length);
-    fprintf(stdout, "IV     = %08X\n", iv_cipher);
 
     for(index = 0; index < length; ++index) {
 
