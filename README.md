@@ -1,6 +1,6 @@
 # LibObf (Obfusticate)
 
-[![License: MIT](https://shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/majestic53/obf/blob/master/LICENSE) [![Build Status](https://github.com/majestic53/obf/workflows/Build/badge.svg)](https://github.com/majestic53/obf/actions/workflows/build.yml) [![Test Status](https://github.com/majestic53/obf/workflows/Test/badge.svg)](https://github.com/majestic53/obf/actions/workflows/test.yml)
+[![License: MIT](https://shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/majestic53/libobf/blob/master/LICENSE) [![Build Status](https://github.com/majestic53/libobf/workflows/Build/badge.svg)](https://github.com/majestic53/libobf/actions/workflows/build.yml) [![Test Status](https://github.com/majestic53/libobf/workflows/Test/badge.svg)](https://github.com/majestic53/libobf/actions/workflows/test.yml)
 
 ### A lightweight obfustication library, written in C.
 
@@ -13,7 +13,7 @@ __NOTE__: This project has been tested under Linux, using the GCC compiler. Some
 Clone the project from the repo:
 
 ```bash
-git clone https://github.com/majestic53/obf
+git clone https://github.com/majestic53/libobf
 ```
 
 ### Building the project
@@ -21,7 +21,7 @@ git clone https://github.com/majestic53/obf
 Navigate into the project directory and run make to build the binary:
 
 ```bash
-cd obf && make
+cd libobf && make
 ```
 
 ## Using the library
@@ -68,4 +68,4 @@ if(result != OBF_SUCCESS) {
 
 ## License
 
-Copyright (C) 2022 David Jolly. Released under the [MIT License](https://github.com/majestic53/obf/blob/master/LICENSE).
+Copyright (C) 2022 David Jolly. Released under the [MIT License](https://github.com/majestic53/libobf/blob/master/LICENSE).
