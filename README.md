@@ -26,7 +26,7 @@ cd libobf && make
 
 ## Using the library
 
-Include the library file under `include/`:
+Include the header file under `include/`:
 
 ```c
 #include <obf.h>
@@ -45,22 +45,20 @@ Link to the library file under `build/`
 obf_key_t key = { .low = ..., .high = ... };
 obf_iv_t iv = ...;
 
-/* Read data blocks/length */
+/* Setup data blocks/length */
 obf_block_t *blocks = ...;
 size_t length = ...;
 
-/* Encode the data blocks with key/IV and collect the modified IV */
+/* Encode the data blocks with key/IV and collect the modified blocks/IV */
 obf_error_e result = obf_encode(&key, &iv, blocks, length);
-
 if(result != OBF_SUCCESS) {
     /* Handle error */
 }
 
 ...
 
-/* Decode the data blocks with key and modified IV */
+/* Decode the modified data blocks with key and modified IV */
 obf_error_e result = obf_decode(&key, &iv, blocks, length);
-
 if(result != OBF_SUCCESS) {
     /* Handle error */
 }
