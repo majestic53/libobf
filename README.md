@@ -6,7 +6,7 @@
 
 This library offers a quick way to obfusticate arbitrary data in a reverable way. __No actual encryption is performed, so the results should not be considered cryptographically secure.__
 
-The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encoding the data in 32-bit blocks:
+The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encodes the data in 32-bit blocks:
 
 <p align="center">
     <img src=https://github.com/majestic53/libobf/raw/master/docs/overview.png>
