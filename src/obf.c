@@ -39,6 +39,7 @@ extern "C" {
  */
 static obf_block_t obf_decode_block(obf_iv_t *iv, obf_block_t left, obf_block_t right)
 {
+    /* xor with pre-decremented IV */
     return (left ^ right ^ --(*iv));
 }
 
@@ -51,6 +52,7 @@ static obf_block_t obf_decode_block(obf_iv_t *iv, obf_block_t left, obf_block_t 
  */
 static obf_block_t obf_encode_block(obf_iv_t *iv, obf_block_t left, obf_block_t right)
 {
+    /* xor with post-incremented IV */
     return (left ^ right ^ (*iv)++);
 }
 
@@ -65,13 +67,16 @@ static void obf_decode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
 {
     obf_iv_t tiv = 0;
 
+    /* Unwrap IV */
     *iv = obf_encode_block(&tiv, *iv, key->high);
     *iv = obf_encode_block(&tiv, *iv, key->low);
 
+    /* Decode ciphertext blocks with key high-part */
     for(size_t index = 0; index < length; ++index) {
         data[index] = obf_decode_block(iv, data[index], index == (length - 1) ? key->high : data[index + 1]);
     }
 
+    /* Decode ciphertext blocks with key low-part */
     for(size_t index = 0; index < length; ++index) {
         data[length - index - 1] = obf_decode_block(iv, data[length - index - 1], index == (length - 1) ? key->low : data[length - index - 2]);
     }
@@ -88,14 +93,17 @@ static void obf_encode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
 {
     obf_iv_t tiv = 0;
 
+    /* Encode plaintext blocks with key low-part */
     for(size_t index = 0; index < length; ++index) {
         data[index] = obf_encode_block(iv, data[index], !index ? key->low : data[index - 1]);
     }
 
+    /* Encode plaintext blocks with key high-part */
     for(size_t index = 0; index < length; ++index) {
         data[length - index - 1] = obf_encode_block(iv, data[length - index - 1], !index ? key->high : data[length - index]);
     }
 
+    /* Wrap IV */
     *iv = obf_encode_block(&tiv, *iv, key->low);
     *iv = obf_encode_block(&tiv, *iv, key->high);
 }
@@ -112,21 +120,25 @@ static obf_error_e obf_validate(const obf_key_t *key, obf_iv_t *iv, obf_block_t 
 {
     obf_error_e result = OBF_SUCCESS;
 
+    /* Validate key is non-NULL */
     if(!key) {
         result = OBF_INVALID_KEY;
         goto exit;
     }
 
+    /* Validate IV is non-NULL */
     if(!iv) {
         result = OBF_INVALID_IV;
         goto exit;
     }
 
+    /* Validate data is non-NULL */
     if(!data) {
         result = OBF_INVALID_DATA;
         goto exit;
     }
 
+    /* Validate length is non-zero */
     if(!length) {
         result = OBF_INVALID_LENGTH;
         goto exit;
@@ -140,10 +152,12 @@ obf_error_e obf_decode(const obf_key_t *key, obf_iv_t *iv, obf_block_t *data, si
 {
     obf_error_e result;
 
+    /* Validate ciphertext arguments */
     if((result = obf_validate(key, iv, data, length)) != OBF_SUCCESS) {
         goto exit;
     }
 
+    /* Decode ciphertext */
     obf_decode_blocks(key, iv, data, length);
 
 exit:
@@ -154,10 +168,12 @@ obf_error_e obf_encode(const obf_key_t *key, obf_iv_t *iv, obf_block_t *data, si
 {
     obf_error_e result;
 
+    /* Validate plaintext arguments */
     if((result = obf_validate(key, iv, data, length)) != OBF_SUCCESS) {
         goto exit;
     }
 
+    /* Encode plaintext */
     obf_encode_blocks(key, iv, data, length);
 
 exit:
