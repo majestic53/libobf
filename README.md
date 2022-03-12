@@ -69,7 +69,7 @@ obf_iv_t iv = ...;
 obf_block_t *blocks = ...;
 size_t length = ...;
 
-/* Encode the data blocks with key/IV and collect the modified data blocks/IV */
+/* Encode the data blocks with key/IV and collect the encoded data blocks/wrapped IV */
 obf_error_e result = obf_encode(&key, &iv, blocks, length);
 if(result != OBF_SUCCESS) {
     /* Handle error */
@@ -77,7 +77,7 @@ if(result != OBF_SUCCESS) {
 
 ...
 
-/* Decode the modified data blocks with key and modified IV */
+/* Decode the encoded data blocks with key and wrapped IV */
 obf_error_e result = obf_decode(&key, &iv, blocks, length);
 if(result != OBF_SUCCESS) {
     /* Handle error */
