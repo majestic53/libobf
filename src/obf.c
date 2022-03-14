@@ -68,8 +68,8 @@ static void obf_decode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
     obf_iv_t tiv = 0;
 
     /* Unwrap IV */
-    *iv = obf_encode_block(&tiv, *iv, key->high);
-    *iv = obf_encode_block(&tiv, *iv, key->low);
+    *iv = obf_encode_block(&tiv, *iv, data[0]);
+    *iv = obf_encode_block(&tiv, *iv, key->low * key->high);
 
     /* Decode ciphertext blocks with key high-part */
     for(size_t index = 0; index < length; ++index) {
@@ -104,8 +104,8 @@ static void obf_encode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
     }
 
     /* Wrap IV */
-    *iv = obf_encode_block(&tiv, *iv, key->low);
-    *iv = obf_encode_block(&tiv, *iv, key->high);
+    *iv = obf_encode_block(&tiv, *iv, key->low * key->high);
+    *iv = obf_encode_block(&tiv, *iv, data[0]);
 }
 
 /**
