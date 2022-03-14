@@ -6,7 +6,7 @@
 
 This library offers a quick way to obfusticate arbitrary data in a reverable way. __No actual encryption is performed, so the results should not be considered cryptographically secure.__
 
-The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encodes the data in 32-bit blocks:
+The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encodes/decodes data in 32-bit blocks:
 
 <p align="center">
     <img src=https://github.com/majestic53/libobf/raw/master/docs/encode_0.png><img src=https://github.com/majestic53/libobf/raw/master/docs/decode_0.png>
@@ -82,6 +82,33 @@ obf_error_e result = obf_decode(&key, &iv, blocks, length);
 if(result != OBF_SUCCESS) {
     /* Handle error */
 }
+```
+
+### Example output
+
+```
+Length = 32
+Key    = 46637DB934A49B2F
+IV     = 6211E62D
+
+Plain  = 1F881BC4, 5BA82F51, 47500AA1, 58D7785B, 72D9931A, 2DF41AE3, 0EC22562, 664FFC1E,
+         0901CBBF, 4919D44A, 74309B07, 24E65908, 70B4C9D9, 5989064A, 7D3406CE, 433CBE34,
+         05B2BCF9, 497C83FF, 29E9ED9E, 0174FC8A, 4583A8A0, 196CB5C8, 629058F8, 50D6BD10,
+         40135A9D, 0FECA49E, 0F32369C, 1D94399A, 71FE8ACB, 43D6D1CB, 63F7B753, 1186A68F
+
+IV     = 10D600FA
+
+Cipher = 387764DF, 135BE475, 01CEADA7, 361A08FA, 3B0833CF, 26D27DD0, 74EDCF11, 4A01BE80,
+         70B3D538, 2111930B, 5BBBE743, 3730EE3A, 1D4C5870, 2595C1DB, 26D4B83F, 3AB0212F,
+         07F9E034, 5D137BEA, 2C9485F2, 16EB704A, 4FF19F3B, 31793EAA, 348CCCBE, 31F88010,
+         064B97E9, 13FA3CC9, 6BB6D536, 7ED9EC13, 14330AE7, 6D368090, 35F43D79, 6CD0D189
+
+IV     = 6211E62D
+
+Plain  = 1F881BC4, 5BA82F51, 47500AA1, 58D7785B, 72D9931A, 2DF41AE3, 0EC22562, 664FFC1E,
+         0901CBBF, 4919D44A, 74309B07, 24E65908, 70B4C9D9, 5989064A, 7D3406CE, 433CBE34,
+         05B2BCF9, 497C83FF, 29E9ED9E, 0174FC8A, 4583A8A0, 196CB5C8, 629058F8, 50D6BD10,
+         40135A9D, 0FECA49E, 0F32369C, 1D94399A, 71FE8ACB, 43D6D1CB, 63F7B753, 1186A68F
 ```
 
 ## License
