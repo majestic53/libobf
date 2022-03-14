@@ -126,7 +126,7 @@ static obf_error_e test_encode_decode(void)
         goto exit;
     }
 
-    fprintf(stdout, "\nIV     = %08X\n", iv_cipher);
+    fprintf(stdout, "\nIVW    = %08X\n", iv_cipher);
     fprintf(stdout, "\nCipher = ");
     print_blocks(cipher, length);
 
