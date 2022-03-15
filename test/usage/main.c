@@ -106,7 +106,7 @@ static obf_error_e test_encode_decode(void)
     obf_error_e result = OBF_SUCCESS;
     size_t index, length = BLOCK_LENGTH;
 
-    obf_iv_t iv = rand(), iv_cipher = iv;
+    obf_iv_t iv = rand(), iv_wrap = iv;
     obf_key_t key = { .low = rand(), .high = rand() };
     obf_block_t cipher[BLOCK_LENGTH] = {}, plain[BLOCK_LENGTH] = {};
 
@@ -121,12 +121,12 @@ static obf_error_e test_encode_decode(void)
     fprintf(stdout, "\nPlain  = ");
     print_blocks(plain, length);
 
-    if(ASSERT(obf_encode(&key, &iv_cipher, cipher, length) == OBF_SUCCESS)) {
+    if(ASSERT(obf_encode(&key, &iv_wrap, cipher, length) == OBF_SUCCESS)) {
         result = OBF_FAILURE;
         goto exit;
     }
 
-    fprintf(stdout, "\nIVW    = %08X\n", iv_cipher);
+    fprintf(stdout, "\nIVW    = %08X\n", iv_wrap);
     fprintf(stdout, "\nCipher = ");
     print_blocks(cipher, length);
 
@@ -138,17 +138,17 @@ static obf_error_e test_encode_decode(void)
         }
     }
 
-    if(ASSERT(iv_cipher != iv)) {
+    if(ASSERT(iv_wrap != iv)) {
         result = OBF_FAILURE;
         goto exit;
     }
 
-    if(ASSERT(obf_decode(&key, &iv_cipher, cipher, length) == OBF_SUCCESS)) {
+    if(ASSERT(obf_decode(&key, &iv_wrap, cipher, length) == OBF_SUCCESS)) {
         result = OBF_FAILURE;
         goto exit;
     }
 
-    fprintf(stdout, "\nIV     = %08X\n", iv_cipher);
+    fprintf(stdout, "\nIV     = %08X\n", iv_wrap);
     fprintf(stdout, "\nPlain  = ");
     print_blocks(cipher, length);
 
@@ -160,7 +160,7 @@ static obf_error_e test_encode_decode(void)
         }
     }
 
-    if(ASSERT(iv_cipher == iv)) {
+    if(ASSERT(iv_wrap == iv)) {
         result = OBF_FAILURE;
         goto exit;
     }
