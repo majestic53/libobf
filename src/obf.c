@@ -1,4 +1,4 @@
-/**
+/*
  * LibObf
  * Copyright (C) 2022 David Jolly
  *
@@ -19,7 +19,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
+/*!
  * @file obf.c
  * @brief LibObf implementation.
  */
@@ -30,7 +30,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-/**
+/*!
  * @brief Decode block.
  * @param iv Pointer to IV struct
  * @param left Left block data
@@ -43,7 +43,7 @@ static obf_block_t obf_decode_block(obf_iv_t *iv, obf_block_t left, obf_block_t 
     return (left ^ right ^ --(*iv));
 }
 
-/**
+/*!
  * @brief Encode block.
  * @param iv Pointer to IV struct
  * @param left Left block data
@@ -56,7 +56,7 @@ static obf_block_t obf_encode_block(obf_iv_t *iv, obf_block_t left, obf_block_t 
     return (left ^ right ^ (*iv)++);
 }
 
-/**
+/*!
  * @brief Decode blocks.
  * @param key Constant pointer to key struct
  * @param iv Pointer to IV struct
@@ -82,7 +82,7 @@ static void obf_decode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
     }
 }
 
-/**
+/*!
  * @brief Encode blocks.
  * @param key Constant pointer to key struct
  * @param iv Pointer to IV struct
@@ -108,7 +108,7 @@ static void obf_encode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
     *iv = obf_encode_block(&tiv, *iv, data[0]);
 }
 
-/**
+/*!
  * @brief Validate arguments.
  * @param key Constant pointer to key struct
  * @param iv Pointer to IV struct
@@ -116,7 +116,7 @@ static void obf_encode_blocks(const obf_key_t *key, obf_iv_t *iv, obf_block_t *d
  * @param length Number of blocks in data
  * @return OBF_SUCCESS on success, OBF_INVALID_KEY, OBF_INVALID_IV, OBF_INVALID_DATA or OBF_INVALID_LENGTH otherwise
  */
-static obf_error_e obf_validate(const obf_key_t *key, obf_iv_t *iv, obf_block_t *data, size_t length)
+static obf_error_e obf_validate(const obf_key_t *key, const obf_iv_t *iv, const obf_block_t *data, size_t length)
 {
     obf_error_e result = OBF_SUCCESS;
 

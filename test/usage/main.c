@@ -1,4 +1,4 @@
-/**
+/*
  * LibObf
  * Copyright (C) 2022 David Jolly
  *
@@ -19,7 +19,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
+/*!
  * @file main.c
  * @brief Test application for LibObf.
  */
@@ -28,13 +28,13 @@
 #include <time.h>
 #include <test.h>
 
-#define BLOCK_LENGTH 32 /*< Test data blocks */
+#define BLOCK_LENGTH 32 /*!< Test data blocks */
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-/**
+/*!
  * @brief Print block contents.
  * @param data Pointer to data blocks
  * @param length Number of blocks in data
@@ -58,7 +58,7 @@ static void print_blocks(const obf_block_t *data, size_t length)
     fprintf(stdout, "\n");
 }
 
-/**
+/*!
  * @brief Test encode/decode arguments validation.
  * @return OBF_SUCCESS on success, OBF_FAILURE otherwise
  */
@@ -97,7 +97,7 @@ exit:
     return result;
 }
 
-/**
+/*!
  * @brief Test encode/decode.
  * @return OBF_SUCCESS on success, OBF_FAILURE otherwise
  */

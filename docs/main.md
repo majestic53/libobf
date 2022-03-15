@@ -1,7 +1,5 @@
 # LibObf (Obfusticate)
 
-[![License: MIT](https://shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.md) [![Build Status](https://github.com/majestic53/libobf/workflows/Build/badge.svg)](https://github.com/majestic53/libobf/actions/workflows/build.yml) [![Test Status](https://github.com/majestic53/libobf/workflows/Test/badge.svg)](https://github.com/majestic53/libobf/actions/workflows/test.yml)
-
 ### A lightweight obfustication library, written in C.
 
 This library offers a quick way to obfusticate arbitrary data in a reverable way. __No actual encryption is performed, so the results should not be considered cryptographically secure.__
@@ -9,40 +7,20 @@ This library offers a quick way to obfusticate arbitrary data in a reverable way
 The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encodes/decodes data in 32-bit blocks:
 
 <p align="center">
-    <img src=docs/encode_0.png><img src=docs/decode_0.png>
+    <img src=encode_0.png><img src=decode_0.png>
 </p>
 
 The encoding process walks through the 32-bit blocks, encoding each block using the previous block and IV as input. At the end, the IV is wrapped one final time with the key:
 
 <p align="center">
-    <img src=docs/encode_1.png>
+    <img src=encode_1.png>
 </p>
 
 Similiarly, the decoding process performes the same process in reverse. First the IV is unwrapped, followed by decoding each block using the previous block and IV as input:
 
 <p align="center">
-    <img src=docs/decode_1.png>
+    <img src=decode_1.png>
 </p>
-
-## Building from source
-
-__NOTE__: This project has been tested under Linux, using the GCC compiler. Some modifications may be required to build with a different OS/compiler.
-
-### Cloning the project
-
-Clone the project from the repo:
-
-```bash
-git clone https://github.com/majestic53/libobf
-```
-
-### Building the project
-
-Navigate into the project directory and run make to build the binary:
-
-```bash
-cd libobf && make
-```
 
 ## Using the library
 
@@ -110,7 +88,3 @@ Plain  = 22600419, 6A0BAFCE, 6B9E78B5, 405B93EC, 33D53378, 39F327EE, 11200CCF, 6
          5F9F6ABA, 5418A129, 2498B06A, 45AA10BD, 7B278B82, 74E888AC, 0DD6BCEA, 13ECE325,
          48DF7EA0, 1CDC4FE2, 0D44EF1E, 4B21132A, 436D1469, 20D773F2, 6924D689, 65CD1882
 ```
-
-## License
-
-Copyright (C) 2022 David Jolly. Released under the [MIT License](LICENSE.md).

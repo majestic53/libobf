@@ -1,4 +1,4 @@
-/**
+/*
  * LibObf
  * Copyright (C) 2022 David Jolly
  *
@@ -19,7 +19,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
+/*!
  * @file test.h
  * @brief Test header.
  */
@@ -29,7 +29,7 @@
 
 #include <assert.h>
 
-/**
+/*!
  * @brief Test count macro.
  * @param _TESTS_ Pointer to test array
  * @return Number of test in test array
@@ -37,7 +37,7 @@
 #define TEST_COUNT(_TESTS_) \
     sizeof(_TESTS_) / sizeof(*(_TESTS_))
 
-/**
+/*!
  * @brief Test result macro.
  * @param _RESULT_ Test result
  */
@@ -47,7 +47,7 @@
         ((_RESULT_) != OBF_SUCCESS) ? "FAIL" : "PASS", \
         "\x1b[0m", __FUNCTION__)
 
-/**
+/*!
  * @brief Test function.
  * @return OBF_FAILURE on failure, OBF_SUCCESS otherwise
  */

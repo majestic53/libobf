@@ -1,4 +1,4 @@
-/**
+/*
  * LibObf
  * Copyright (C) 2022 David Jolly
  *
@@ -19,7 +19,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
+/*!
  * @file assert.h
  * @brief Test assertion.
  */
@@ -30,7 +30,7 @@
 #include <stdio.h>
 #include <obf.h>
 
-/**
+/*!
  * @brief Test assertion macro.
  * @param _CONDITION_ Assert on condition
  * @return OBF_FAILURE
@@ -42,7 +42,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-/**
+/*!
  * @brief Test assertion.
  * @param condition Constant pointer to condition string
  * @param file Constant pointer to file string
