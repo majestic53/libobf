@@ -30,9 +30,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-/*!
- * LibObf interface version
- */
 #define OBF_API_VERSION_1 1                 /*!< Interface version 1 */
 #define OBF_API_VERSION OBF_API_VERSION_1   /*!< Current interface version */
 
