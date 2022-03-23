@@ -64,7 +64,6 @@ static void print_blocks(const obf_block_t *data, size_t length)
  */
 static obf_error_e test_arguments(void)
 {
-
     obf_iv_t iv = 0;
     obf_key_t key = {};
     size_t length = BLOCK_LENGTH;
