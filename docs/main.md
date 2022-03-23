@@ -1,7 +1,3 @@
-# LibObf (Obfusticate)
-
-### A lightweight obfustication library, written in C.
-
 This library offers a quick way to obfusticate arbitrary data in a reverable way. __No actual encryption is performed, so the results should not be considered cryptographically secure.__
 
 The algorithm uses a simple xor block cipher, which takes a 64-bit key, 32-bit IV and encodes/decodes data in 32-bit blocks:

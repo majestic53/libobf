@@ -35,7 +35,7 @@
 
 /*!
  * @enum obf_error_e
- * @brief LibObf error codes.
+ * @brief LibObf error code.
  */
 typedef enum {
     OBF_SUCCESS = 0,                        /*!< Operation succeeded */
